@@ -8,6 +8,7 @@ public class GymRatsLogbookBackendApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(GymRatsLogbookBackendApplication.class, args);
+        //test
     }
 
 }
