@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping({"/api/v1"})
+@RequestMapping("/api/v1")
 public class CalculatorController {
     private final CalculatorService calculatorService;
 
@@ -18,9 +18,9 @@ public class CalculatorController {
         this.calculatorService = calculatorService;
     }
 
-    @PostMapping({"/bmi"})
+    @PostMapping("/bmi")
     public ResponseEntity<BmiNotLoggedResponse> calculateBmi(@RequestBody BmiNotLoggedRequest requestBmi) {
-        BmiNotLoggedResponse bmiNotLoggedResponse = this.calculatorService.calculateBmi(requestBmi);
+        BmiNotLoggedResponse bmiNotLoggedResponse = calculatorService.calculateBmi(requestBmi);
         return ResponseEntity.ok(bmiNotLoggedResponse);
     }
 }

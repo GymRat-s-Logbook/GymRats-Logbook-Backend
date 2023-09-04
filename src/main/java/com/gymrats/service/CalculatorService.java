@@ -6,18 +6,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CalculatorService {
-    float bmi;
-    float weight;
-    float height;
 
-    public CalculatorService() {
-    }
 
     public BmiNotLoggedResponse calculateBmi(BmiNotLoggedRequest requestBmi) {
-        this.weight = requestBmi.weight();
-        this.height = requestBmi.height();
-        this.bmi = this.weight / (this.height * this.height);
-        BmiNotLoggedResponse bmiResponse = new BmiNotLoggedResponse(this.bmi);
+        float weight = requestBmi.weight();
+        float height = requestBmi.height();
+        float bmi = weight / (height * height);
+        BmiNotLoggedResponse bmiResponse = new BmiNotLoggedResponse(bmi);
         return bmiResponse;
     }
 }
