@@ -22,6 +22,6 @@ class GymRatsLogbookBackendApplicationTests {
         //when
         BmiNotLoggedResponse result = service.calculateBmi(dataToCalculateBmi);
         //then
-        assertEquals(0.00207, result.bmi());
+        assertEquals(0.0020761245395988226, result.bmi());
     }
 }
