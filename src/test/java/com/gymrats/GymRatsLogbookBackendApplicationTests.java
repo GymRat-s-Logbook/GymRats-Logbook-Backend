@@ -20,7 +20,7 @@ class GymRatsLogbookBackendApplicationTests {
         //given
         BmiNotLoggedRequest dataToCalculateBmi = new BmiNotLoggedRequest(GenderEnum.WOMAN, 60.0F, 170.0F);
         //when
-        BmiNotLoggedResponse result = this.service.calculateBmi(dataToCalculateBmi);
+        BmiNotLoggedResponse result = service.calculateBmi(dataToCalculateBmi);
         //then
         assertEquals(0.00207, result.bmi());
     }
