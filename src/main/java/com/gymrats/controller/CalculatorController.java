@@ -2,6 +2,8 @@ package com.gymrats.controller;
 
 import com.gymrats.model.BmiNotLoggedRequest;
 import com.gymrats.model.BmiNotLoggedResponse;
+import com.gymrats.model.BmrNotLoggedRequest;
+import com.gymrats.model.BmrNotLoggedResponse;
 import com.gymrats.service.CalculatorService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,5 +24,11 @@ public class CalculatorController {
     public ResponseEntity<BmiNotLoggedResponse> calculateBmi(@RequestBody BmiNotLoggedRequest requestBmi) {
         BmiNotLoggedResponse bmiNotLoggedResponse = calculatorService.calculateBmi(requestBmi);
         return ResponseEntity.ok(bmiNotLoggedResponse);
+    }
+
+    @PostMapping("/bmr")
+    public ResponseEntity<BmrNotLoggedResponse> calculateBmr(@RequestBody BmrNotLoggedRequest requestDataBmr){
+        BmrNotLoggedResponse bmrNotLoggedResponse = calculatorService.calculateBmr(requestDataBmr);
+        return ResponseEntity.ok(bmrNotLoggedResponse);
     }
 }
