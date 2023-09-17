@@ -28,8 +28,8 @@ public class CalculatorService {
         float height = requestBmr.height();
         float bmr = 0;
 
-        if(weight == 0 || weight < 0 || height == 0 || height < 0  || userAge == 0 || userAge < 0){
-            throw new IllegalArgumentException();
+        if(weight <= 0 || height <= 0 || userAge <= 0){
+            throw new IllegalArgumentException("Value cannot be equal to or less than zero");
         }
         else if(sex.equals(GenderEnum.WOMAN)){
             bmr = (float)(447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * userAge));
