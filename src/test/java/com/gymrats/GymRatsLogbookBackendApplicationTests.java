@@ -9,8 +9,10 @@ import com.gymrats.service.CalculatorService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDate;
+import java.time.Period;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 class GymRatsLogbookBackendApplicationTests {
@@ -48,4 +50,55 @@ class GymRatsLogbookBackendApplicationTests {
         //then
         assertEquals(1588.79, Math.floor(bmrResult.bmrResponse() * 100.0f) / 100.0f);
     }
+
+    @Test
+    void shouldThrowIllegalArgumentExceptionWhenWeightIsZero() {
+        //given
+        LocalDate dateOfBirthExample = LocalDate.of(2002, 02,2);
+        BmrNotLoggedRequest bmrZero = new BmrNotLoggedRequest(GenderEnum.WOMAN, dateOfBirthExample, 0, 180);
+        //when
+        //then
+        assertThrows(IllegalArgumentException.class, ()-> service.calculateBmr(bmrZero));
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentExceptionWhenHeightIsZero() {
+        //given
+        LocalDate dateOfBirthExample = LocalDate.of(2002, 02,2);
+        BmrNotLoggedRequest bmrZero = new BmrNotLoggedRequest(GenderEnum.WOMAN, dateOfBirthExample, 60, 0);
+        //when
+        //then
+        assertThrows(IllegalArgumentException.class, ()-> service.calculateBmr(bmrZero));
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentExceptionWhenAgeIsZero() {
+        //given
+        LocalDate dateOfBirthExample = LocalDate.now();
+        BmrNotLoggedRequest bmrZero = new BmrNotLoggedRequest(GenderEnum.MAN, dateOfBirthExample, 60, 180);
+        //when
+        //then
+        assertThrows(IllegalArgumentException.class, ()-> service.calculateBmr(bmrZero));
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentExceptionWhenWeightIsNegative() {
+        //given
+        LocalDate dateOfBirthExample = LocalDate.of(2002, 02,2);
+        BmrNotLoggedRequest bmrZero = new BmrNotLoggedRequest(GenderEnum.WOMAN, dateOfBirthExample, -10, 180);
+        //when
+        //then
+        assertThrows(IllegalArgumentException.class, ()-> service.calculateBmr(bmrZero));
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentExceptionWhenHeightIsNegative() {
+        //given
+        LocalDate dateOfBirthExample = LocalDate.of(2002, 02,2);
+        BmrNotLoggedRequest bmrZero = new BmrNotLoggedRequest(GenderEnum.WOMAN, dateOfBirthExample, 60, -100);
+        //when
+        //then
+        assertThrows(IllegalArgumentException.class, ()-> service.calculateBmr(bmrZero));
+    }
+
 }
